@@ -1,32 +1,31 @@
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="card-title text-center mb-4">User Login</h2>
-            <form (ngSubmit)="onLogin()" novalidate>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control"formControlName="email" name="email" required>
-              </div>
-              <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" class="form-control" formControlName="password" name="password" required>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
-              </div>
-            </form>
-            <div class="text-center">
-              <a href="" (click)="forgotPassword()">Forgot Password?</a>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">User Login</h2>
+          <form (ngSubmit)="onLogin()" method="post" novalidate>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" id="username" class="form-control" formControlName="username" name="username" required>
             </div>
-            <hr>
-            <div class="text-center">
-              <p>Don't have an account? <button type="button" class="btn btn-secondary" (click)="register()">Register</button></p>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control" formControlName="password" name="password" required>
             </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+          </form>
+          <div class="text-center">
+            <a href="" (click)="forgotPassword()">Forgot Password?</a>
+          </div>
+          <hr>
+          <div class="text-center">
+            <p>Don't have an account? <button type="button" class="btn btn-secondary" (click)="register()">Register</button></p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

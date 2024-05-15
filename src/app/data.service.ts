@@ -16,9 +16,6 @@ export class DataService{
   constructor(private http:HttpClient) { }
 
 
-  getProizvodi(): Observable<Event[]> {
-    return this.http.get<Event[]>(`${this.apiUrl}/proizvodi`);
-  } 
 
   getEventById(id: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/proizvodi/${id}`);
@@ -29,25 +26,9 @@ export class DataService{
     return this.http.delete(`${this.apiUrl}/proizvodi/${id}`);
   }
 
-  editProizvod(proizvod: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.apiUrl}/proizvodi`, proizvod);
-  }/*
-  addNar(cartmode: Cart): Observable<any> {
-    return this.http.post(`${this.apiUrl}/narudzbe`, cartmode);
-  }
-  */
+
   addUser(user: User): Observable<any> {
     return this.http.post(`${environment.API_URL}/authenticate/users`, user);
-  }/*
-  addContact(contact: Contact): Observable<any> {
-    return this.http.post(`${environment.API_URL}/contact/contactus`, contact);
   }
-
-  getProizvodiForUser(id: number): Observable<Cart[]> {
-    return this.http.get<Cart[]>(`${this.apiUrl}/narudzbe/${id}`);
-  }
-  getEmailForAdmin(): Observable<Contact[]> {
-    return this.http.get<Contact[]>(`${environment.API_URL}/contact/contactus`);
-  }*/
 
 }

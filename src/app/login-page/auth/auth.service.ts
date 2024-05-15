@@ -13,26 +13,25 @@ export class AuthService {
   private token : string="";
   errorEmitter : Subject<string> = new Subject<string>();
   authChange : Subject<boolean> = new Subject<boolean>();
-  authUrl : string = environment.API_URL+'/authenticate';
+  authUrl: string = environment.API_URL + '/auth/signin'; // Update the URL
+
 
   constructor(private http : HttpClient, private router : Router) { }
 
-  login(credentials : {username : string, password: string}){
-
-    this.http.post(this.authUrl,credentials)
-    .subscribe((res: { status?: number; description?: string; user?: User; token?: string }) => {
-      console.log(res);
-      if (res.status == 200){
+  login(credentials: { username: string, password: string }) {
+    this.http.post(this.authUrl, credentials)
+      .subscribe((res: { status?: number; description?: string; user?: any; token?: string }) => {
+        console.log(res);
+        if (res.status == 200) {
           this.user = res.user!;
           this.token = res.token!;
           localStorage.setItem('token', this.token);
           this.authChange.next(true);
-          this.router.navigate(['/']);
-      } else {
+          this.router.navigate(['/home']);
+        } else {
           this.errorEmitter.next(res.description!)
-      }
-  })
-
+        }
+      })
   }
 
   logout(){
