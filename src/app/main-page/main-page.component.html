@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>List of Events</h2>
+        <button class="btn btn-primary mb-3" (click)="openAddForm()">Add Event</button>
+        <div class="list-group">
+          <!-- Loop through each event -->
+          <div *ngFor="let event of events" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ event.name }}</h4>
+            <p class="list-group-item-text">Date and Time of Creation: {{ event.creationDateTime | date }}</p>
+            <p class="list-group-item-text">Affected Brand: {{ event.affectedBrand }}</p>
+            <p class="list-group-item-text">Description: {{ event.description }}</p>
+            <p class="list-group-item-text">Malicious URL: {{ event.maliciousURL }}</p>
+            <p class="list-group-item-text">Malicious Domain Registration Date: {{ event.maliciousDomainRegistrationDate | date }}</p>
+            <div class="list-group-item-text">Malicious Domain DNS Records: 
+              <ul>
+                <li *ngFor="let record of event.maliciousDomainDNSRecords">{{ record }}</li>
+              </ul>
+            </div>
+            <p class="list-group-item-text">Matching Keywords: {{ event.matchingKeywords.join(', ') }}</p>
+            <p class="list-group-item-text">Status: {{ event.status }}</p>
+            <h5>Analyst Comments:</h5>
+            <!-- Loop through each comment -->
+            <div *ngFor="let comment of event.analystComments" class="comment">
+              <p>{{ comment.content }}</p>
+              <p>{{ comment.timestamp | date }}</p>
+            </div>
+            <!-- Details button -->
+            <button class="btn btn-primary" (click)="showDetails(event)">Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" [style.display]="showAddForm ? 'block' : 'none'">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Event</h5>
+          <button type="button" class="close" aria-label="Close" (click)="closeAddForm()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" style="max-height: 300px; overflow-y: auto;">
+          <form>
+          <div class="form-group">
+            <label for="eventName">Name</label>
+            <input type="text" class="form-control" id="eventName" placeholder="Enter event name">
+          </div>
+          <div class="form-group">
+            <label for="eventDateTime">Date and Time of Creation</label>
+            <input type="datetime-local" class="form-control" id="eventDateTime">
+          </div>
+          <div class="form-group">
+            <label for="affectedBrand">Affected Brand</label>
+            <input type="text" class="form-control" id="affectedBrand" placeholder="Enter affected brand">
+          </div>
+          <div class="form-group">
+            <label for="eventDescription">Description</label>
+            <textarea class="form-control" id="eventDescription" rows="3" placeholder="Enter event description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="maliciousURL">Malicious URL</label>
+            <input type="text" class="form-control" id="maliciousURL" placeholder="Enter malicious URL">
+          </div>
+          <div class="form-group">
+            <label for="domainRegistrationDate">Malicious Domain Registration Date</label>
+            <input type="date" class="form-control" id="domainRegistrationDate">
+          </div>
+          <div class="form-group">
+            <label for="maliciousDomainDNSRecords">Malicious Domain DNS Records</label>
+            <input type="text" class="form-control" id="maliciousDomainDNSRecords" placeholder="Enter malicious domain DNS records">
+          </div>
+          <div class="form-group">
+            <label for="matchingKeywords">Matching Keywords</label>
+            <input type="text" class="form-control" id="matchingKeywords" placeholder="Enter matching keywords">
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" id="status">
+              <option value="todo">Todo</option>
+              <option value="inProgress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="analystComments">Analyst Comments</label>
+            <textarea class="form-control" id="analystComments" rows="3" placeholder="Enter analyst comments"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeAddForm()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveEvent()">Save Event</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  

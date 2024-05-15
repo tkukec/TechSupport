@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Event Details</h2>
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{ event.name }}</h4>
+            <p class="card-text">Date and Time of Creation: {{ event.creationDateTime | date }}</p>
+            <p class="card-text">Affected Brand: {{ event.affectedBrand }}</p>
+            <p class="card-text">Description: {{ event.description }}</p>
+            <p class="card-text">Malicious URL: {{ event.maliciousURL }}</p>
+            <p class="card-text">Malicious Domain Registration Date: {{ event.maliciousDomainRegistrationDate | date }}</p>
+            <div class="card-text">Malicious Domain DNS Records: 
+              <ul>
+                <li *ngFor="let record of event.maliciousDomainDNSRecords">{{ record }}</li>
+              </ul>
+            </div>
+            <p class="card-text">Matching Keywords: {{ event.matchingKeywords.join(', ') }}</p>
+            <p class="card-text">Status: {{ event.status }}</p>
+            <h5>Analyst Comments:</h5>
+            <div *ngFor="let comment of event.analystComments" class="comment">
+              <p>{{ comment.content }}</p>
+              <p>{{ comment.timestamp | date }}</p>
+            </div>
+            <button class="btn btn-primary" (click)="editEvent()">Edit</button>
+            <button class="btn btn-danger" (click)="deleteEvent()">Delete</button>
+            <button class="btn btn-secondary" (click)="goBack()">Return</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

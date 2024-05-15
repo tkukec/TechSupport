@@ -1,0 +1,38 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">User Registration</h2>
+            <form class="signin-form" fxLayout="column" fxLayoutAlign="center center" (submit)="onSubmit()" [formGroup]="registrationForm">
+              <div class="form-group">
+                <input type="text" formControlName="name" placeholder="Enter name" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" formControlName="surname" placeholder="Enter surname" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="email" formControlName="email" placeholder="Enter email" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" formControlName="password" placeholder="Enter password" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="password" formControlName="confirmPassword" placeholder="Confirm password" class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="submit" [disabled]="registrationForm.invalid" class="btn btn-primary btn-block">Register</button>
+              </div>
+            </form>
+            <div *ngIf="registrationSuccess" class="alert alert-success mt-3" role="alert">
+              You have registered successfully!
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-3">
+            <button type="button" class="btn btn-secondary" (click)="backToLogin()">Back to Login</button>
+          </div>
+      </div>
+    </div>
+  </div>
+  
